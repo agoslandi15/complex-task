@@ -12,18 +12,20 @@ import java.util.stream.Stream;
 
 public class BaseTest {
     protected WebDriver driver;
-    protected String browser;
     protected BasePage basePage;
     protected LoginPage loginPage;
 
     private String URL = "https://www.saucedemo.com/";
 
-    public BaseTest(String browser) {
-        this.browser = browser;
-    }
 
     @BeforeEach
-    public void setUp() {
+    public void setUp(TestInfo testInfo) {
+        //OPCION QUE ANDABA
+        String browser = "chrome";
+        if (testInfo.getTestMethod().isPresent()) {
+            browser = testInfo.getTestMethod().get().getName().contains("Chrome") ? "chrome" : "edge";
+        }
+
         LoggerUtil.info("Setting up WebDriver: " + browser);
         driver = WebDriverSingleton.getDriver(browser);
         driver.manage().window().maximize();

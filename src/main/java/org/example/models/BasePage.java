@@ -2,6 +2,7 @@ package org.example.models;
 
 import org.example.utils.LoggerUtil;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -35,7 +36,7 @@ public class BasePage {
 
     protected void clear(By locator){
         LoggerUtil.info("Clearing field with XPath: " + locator.toString());
-        findElement(locator).clear();
+        findElement(locator).sendKeys(Keys.CONTROL + "a", Keys.DELETE);
     }
 
     protected boolean isElementDisplayed(By locator) {

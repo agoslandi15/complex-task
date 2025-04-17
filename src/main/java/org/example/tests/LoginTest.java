@@ -15,10 +15,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class LoginTest extends BaseTest{
 
-    public LoginTest(String browser) {
-        super(browser);
-    }
-
     @DisplayName("UC-1: Login with empty credentials")
     @ParameterizedTest(name = "Browser:{0}")
     @MethodSource("provideBrowsers")
@@ -33,8 +29,8 @@ public class LoginTest extends BaseTest{
         loginPage.clickLoginButton();
 
         assertTrue(loginPage.isErrorMessageDisplayed(), "Error message should be displayed");
-        assertTrue(loginPage.getErrorText().contains("Username is required"),
-                "Error message should contain: 'Username is required'");
+        assertEquals("Epic sadface: Username is required", loginPage.getErrorText(),
+                "Error message should be 'Epic sadface: Username is required'");
 
         LoggerUtil.info("Finished running test UC-1 successfully");
     }
@@ -52,8 +48,8 @@ public class LoginTest extends BaseTest{
         loginPage.clickLoginButton();
 
         assertTrue(loginPage.isErrorMessageDisplayed(), "Error message should be displayed");
-        assertTrue(loginPage.getErrorText().contains("Password is required"),
-                "Error message should contain: 'Password is required'");
+        assertEquals("Epic sadface: Password is required", loginPage.getErrorText(),
+                "Error message should be 'Epic sadface: Password is required'");
 
         LoggerUtil.info("Finished running test UC-2 successfully");
     }
