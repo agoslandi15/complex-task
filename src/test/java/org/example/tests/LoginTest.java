@@ -5,6 +5,7 @@ import org.example.models.MainPage;
 import org.example.utils.LoggerUtil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -16,11 +17,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class LoginTest extends BaseTest{
 
     @DisplayName("UC-1: Login with empty credentials")
-    @ParameterizedTest(name = "Browser:{0}")
-    @MethodSource("provideBrowsers")
+    @Test
     @Tag("UC-1")
-    public void testWithEmptyCredentials(String browser) {
-        LoggerUtil.info("Starting running test UC-1 with browser: " + browser);
+    public void testWithEmptyCredentials() {
+        LoggerUtil.info("Starting running test UC-1");
 
         loginPage.enterUsername("any_username");
         loginPage.enterPassword("any_password");
@@ -36,11 +36,11 @@ public class LoginTest extends BaseTest{
     }
 
     @DisplayName("UC-2: Login with empty password field")
-    @ParameterizedTest(name = "Browser:{0}, User: {1}")
-    @MethodSource({"provideBrowsers", "provideValidUsers"})
+    @ParameterizedTest(name = "User: {0}")
+    @MethodSource("provideValidUsers")
     @Tag("UC-2")
-    public void testWithEmptyPassword(String browser, String username) {
-        LoggerUtil.info("Starting running test UC-2 with browser: " + browser + ", username: " + username);
+    public void testWithEmptyPassword(String username) {
+        LoggerUtil.info("Starting running test UC-2 with username: " + username);
 
         loginPage.enterUsername(username);
         loginPage.enterPassword("any_password");
@@ -55,11 +55,11 @@ public class LoginTest extends BaseTest{
     }
 
     @DisplayName("UC-3: Login with valid credentials in both fields")
-    @ParameterizedTest(name = "Browser:{0}, User: {1}, Password: {2}")
+    @ParameterizedTest(name = "User: {0}, Password: {1}")
     @MethodSource("provideValidCredentials")
     @Tag("UC-3")
-    public void testWithValidCredentials(String browser, String username, String password) {
-        LoggerUtil.info("Starting running test UC-3 with browser: " + browser + ", username: " + username + ", password: " + password);
+    public void testWithValidCredentials(String username, String password) {
+        LoggerUtil.info("Starting running test UC-3 with username: " + username + "| password: " + password);
 
         MainPage mainPage = loginPage.performLogin(username, password);
 

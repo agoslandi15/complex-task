@@ -14,10 +14,6 @@ public class LoggerUtil {
         logger.error(message);
     }
 
-    public static void warn(String message) {
-        logger.warn(message);
-    }
-
     public static void debug(String message) {
         logger.debug(message);
     }

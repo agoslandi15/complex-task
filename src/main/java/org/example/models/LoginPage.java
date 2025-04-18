@@ -26,7 +26,6 @@ public class LoginPage extends BasePage{
     }
 
     public MainPage performLogin(String username, String password){
-        LoggerUtil.info("Performing login with username: '" + username + "' and password: '" + password + "'");
         enterUsername(username);
         enterPassword(password);
         clickLoginButton();
