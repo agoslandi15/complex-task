@@ -15,7 +15,7 @@ public class BaseTest {
     protected BasePage basePage;
     protected LoginPage loginPage;
 
-    private String URL = "https://www.saucedemo.com/";
+    private final String URL = "https://www.saucedemo.com/";
 
 
     @BeforeEach

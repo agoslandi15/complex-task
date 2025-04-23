@@ -1,57 +1,64 @@
-Launch URL: https://www.saucedemo.com/
+# Swag Labs Login Testing Project
 
-UC-1 Test Login form with empty credentials:
+## Description
+This project tests the login functionality of the Swag Labs demo website using Selenium WebDriver. The tests verify different login scenarios as specified in the use cases below.
 
-Type any credentials into "Username" and "Password" fields.
+## Launch URL
+https://www.saucedemo.com/
 
-Clear the inputs.
+## Use Cases
 
-Hit the "Login" button.
+### UC-1: Test Login Form with Empty Credentials
+- Type any credentials into "Username" and "Password" fields
+- Clear the inputs
+- Hit the "Login" button
+- **Expected Result:** Error message "Username is required" is displayed
 
-Check the error messages: "Username is required".
+### UC-2: Test Login Form with Missing Password
+- Type any credentials in username field
+- Enter password
+- Clear the "Password" input
+- Hit the "Login" button
+- **Expected Result:** Error message "Password is required" is displayed
 
-UC-2 Test Login form with credentials by passing Username:
+### UC-3: Test Login Form with Valid Credentials
+- Type credentials from the "Accepted usernames" section
+- Enter password as "secret_sauce"
+- Click on Login button
+- **Expected Result:** Successfully navigate to dashboard with title "Swag Labs"
 
-Type any credentials in username.
+## Implementation
 
-Enter password.
+### Technologies Used
+- **Test Automation Tool:** Selenium WebDriver
+- **Project Builder:** Maven
+- **Browsers Supported:**
+    - Chrome
+    - Edge
+- **Locators:** XPath
+- **Test Runner:** JUnit
+- **Assertions:** Built-in assertions of JUnit
+- **Running Environment:** Java 17
 
-Clear the "Password" input.
+### Features
+- **Design Patterns:**
+    - Singleton: for the WebDriver instance
+    - Facade: to perform the login in a single method (UC-3)
+- **Logger:** SLF4J (info, debug, error)
+- Data Provider for test parametrization
 
-Hit the "Login" button.
 
-Check the error messages: "Password is required".
+## Running the Tests
+To execute all tests using the browser by default (chrome), run the following command:
+```bash
+mvn clean test
+```
 
-UC-3 Test Login form with credentials by passing Username & Password:
-
-Type credentials in username which are under Accepted username are sections.
-
-Enter password as secret sauce.
-
-Click on Login and validate the title “Swag Labs” in the dashboard.
-
-Provide parallel execution, add logging for tests and use Data Provider to parametrize tests.
-
-Make sure that all tasks are supported by these 3 conditions: UC-1; UC-2; UC-3.
-
-Please, add task description as README.md into your solution!
-
-To perform the task use the various of additional options:
-
-Test Automation tool: Selenium WebDriver;
-
-Project Builder: Maven;
-
-Browsers: 1) Chrome; 2) Edge;
-
-Locators: XPath;
-
-Test Runner: JUnit;
-
-[Optional] Patterns: 1) Singleton; 2) Builder; 3) Decorator;
-
-[Optional] Test automation approach: BDD;
-
-Assertions: Built-in assertions of Unit-runners (JUnit vs TestNG);
-
-[Optional] Loggers: SLF4J.
+To execute all tests using a specific browser, you can use the following command:
+```bash
+mvn clean test -Dbrowser=chrome
+```
+or
+```bash
+mvn clean test -Dbrowser=edge
+```

@@ -17,12 +17,12 @@ public class LoginPage extends BasePage{
 
     public void enterUsername(String username){
         LoggerUtil.info("Entering username: " + username);
-        setField(usernameField, username);
+        sendText(usernameField, username);
     }
 
     public void enterPassword(String password){
         LoggerUtil.info("Entering password: " + password);
-        setField(passwordField, password);
+        sendText(passwordField, password);
     }
 
     public MainPage performLogin(String username, String password){

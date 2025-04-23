@@ -24,7 +24,7 @@ public class BasePage {
         findElement(locator).click();
     }
 
-    protected void setField(By locator, String text){
+    protected void sendText(By locator, String text){
         WebElement element = findElement(locator);
         element.clear();
         element.sendKeys(text);
