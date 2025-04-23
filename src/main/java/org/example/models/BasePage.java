@@ -1,12 +1,13 @@
 package org.example.models;
 
+import org.example.utils.LoggerUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class BasePage {
-    public static WebDriver driver;
+    protected WebDriver driver;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -16,7 +17,8 @@ public class BasePage {
         try {
             return driver.findElement(locator);
         } catch (Exception exc) {
-            throw exc;
+            LoggerUtil.error("Error with the " + locator + " locator: " + exc.getLocalizedMessage());
+            return null;
         }
     };
 
@@ -38,6 +40,7 @@ public class BasePage {
         try {
             return findElement(locator).isDisplayed();
         } catch (Exception exc) {
+            LoggerUtil.error("Error with the " + locator + " locator: " + exc.getLocalizedMessage());
             return false;
         }
     }
@@ -46,12 +49,12 @@ public class BasePage {
         try {
             return findElement(locator).getText();
         } catch (Exception exc) {
+            LoggerUtil.error("Error with the " + locator + " locator: " + exc.getLocalizedMessage());
             throw exc;
         }
     }
 
     protected String getTitle() {
-        String title = driver.getTitle();
-        return title;
+        return driver.getTitle();
         }
 }

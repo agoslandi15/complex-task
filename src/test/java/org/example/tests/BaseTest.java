@@ -17,7 +17,6 @@ public class BaseTest {
 
     private final String URL = "https://www.saucedemo.com/";
 
-
     @BeforeEach
     public void setUp() {
         LoggerUtil.info("Setting up WebDriver");
