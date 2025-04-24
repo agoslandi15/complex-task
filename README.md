@@ -6,27 +6,6 @@ This project tests the login functionality of the Swag Labs demo website using S
 ## Launch URL
 https://www.saucedemo.com/
 
-## Use Cases
-
-### UC-1: Test Login Form with Empty Credentials
-- Type any credentials into "Username" and "Password" fields
-- Clear the inputs
-- Hit the "Login" button
-- **Expected Result:** Error message "Username is required" is displayed
-
-### UC-2: Test Login Form with Missing Password
-- Type any credentials in username field
-- Enter password
-- Clear the "Password" input
-- Hit the "Login" button
-- **Expected Result:** Error message "Password is required" is displayed
-
-### UC-3: Test Login Form with Valid Credentials
-- Type credentials from the "Accepted usernames" section
-- Enter password as "secret_sauce"
-- Click on Login button
-- **Expected Result:** Successfully navigate to dashboard with title "Swag Labs"
-
 ## Implementation
 
 ### Technologies Used

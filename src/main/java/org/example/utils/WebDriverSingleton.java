@@ -12,23 +12,23 @@ public class WebDriverSingleton {
 
     //Parametrized and private constructor
     private WebDriverSingleton(String browser) {
-        LoggerUtil.info("Starting driver: " + browser);
+        LoggerUtil.debug("Setting up " + browser + "WebDriver");
+        setProperties(browser);
 
         try {
             switch (browser.toLowerCase()) {
                 case EDGE: {
-                    LoggerUtil.debug("Setting up Edge WebDriver");
-                    System.setProperty("webdriver.edge.driver", "src/main/resources/msedgedriver.exe");
                     driver = new EdgeDriver();
                     LoggerUtil.info("Edge Driver successfully configured");
                     break;
                 }
-                default: {
-                    LoggerUtil.debug("Setting up Chrome WebDriver");
-                    System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+                case CHROME: {
                     driver = new ChromeDriver();
                     LoggerUtil.info("Chrome Driver successfully configured");
                     break;
+                }
+                default: {
+                    throw new Exception("Unsupported browser: " + browser);
                 }
             }
             driver.manage().window().maximize();
@@ -37,6 +37,24 @@ public class WebDriverSingleton {
             LoggerUtil.error("Error with the configuration of the " + browser + " driver: " + exc.getLocalizedMessage());
             throw new RuntimeException("The WebDriver could not be initialized" + exc.getMessage());
         }
+    }
+
+    public void setProperties(String browser){
+        String propName;
+        String path;
+        switch (browser.toLowerCase()) {
+            case EDGE: {
+                propName = "webdriver.edge.driver";
+                path = "src/main/resources/msedgedriver.exe";
+                break;
+            }
+            default: {
+                propName = "webdriver.chrome.driver";
+                path = "src/main/resources/chromedriver.exe";
+                break;
+            }
+        }
+        System.setProperty(propName, path);
     }
 
     //Parametrized method (only returns the instance)
